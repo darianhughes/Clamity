@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod;
 using Clamity.Content.Biomes.EntropicSpace.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -25,6 +26,7 @@ namespace Clamity
         public static ClamityPlayer Clamity(this Player player) => player.GetModPlayer<ClamityPlayer>();
         public static ClamityGlobalProjectile Clamity(this Projectile proj) => proj.GetGlobalProjectile<ClamityGlobalProjectile>();
         public static ClamityGlobalNPC Clamity(this NPC npc) => npc.GetGlobalNPC<ClamityGlobalNPC>();
+        public static ClamityGlobalItem Clamity(this Item item) => item.GetGlobalItem<ClamityGlobalItem>();
         public static LocalizedText GetText(string key) => Language.GetOrRegister("Mods.Clamity." + key, (Func<string>)null);
         public static bool ContainType(int type, params int[] array)
         {
@@ -181,6 +183,16 @@ namespace Clamity
             int width = rectangle.Width / horizontalFrames;
             int height = rectangle.Height / verticalFrames;
             return new Rectangle(rectangle.Left + width * frameX, rectangle.Top + height * frameY, width, height);
+        }
+        public static Recipe ReplaceIngredient(this Recipe recipe, int oldItem, int newItem, int count = 1)
+        {
+            int index = recipe.IngredientIndex(oldItem);
+            if (index != -1)
+            {
+                recipe.requiredItem.RemoveAt(index);
+                recipe.requiredItem.Insert(index, new Item(newItem) { stack = count });
+            }
+            return recipe;
         }
         public static void MergeWithDistortion(int type)
         {
