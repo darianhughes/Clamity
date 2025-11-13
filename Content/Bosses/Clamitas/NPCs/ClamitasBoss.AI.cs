@@ -6,6 +6,7 @@ using Clamity.Content.Bosses.Clamitas.Projectiles;
 using Clamity.Content.Particles;
 using Luminance.Common.Easings;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -20,11 +21,12 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             PreFight = 0,
             StartingCutscene = 1,
 
+            SidefallTeleports,
             FastTeleports,
             CrossSpirits,
             SpiritWave,
 
-            HahaLimboMonent,
+            HahaLimboMonent, //what is this. i forgot
         }
 
         private int attack = (int)Attacks.PreFight;
@@ -76,16 +78,19 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             switch (CurrentAttack)
             {
                 case Attacks.PreFight:
-                    PreFightState();
+                    AttackIThink_PreFightState();
                     break;
                 case Attacks.StartingCutscene:
-                    StartingCutsceneState();
+                    AttackIThink_StartingCutsceneState();
+                    break;
+                case Attacks.SidefallTeleports:
+                    Attack_SidefallTeleports();
                     break;
                 case Attacks.CrossSpirits:
-                    CrossSpiritsState();
+                    Attack_CrossSpirits();
                     break;
                 case Attacks.SpiritWave:
-                    SpiritWaveState();
+                    Attack_SpiritWave();
                     break;
 
             }
@@ -97,7 +102,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
             return nextAttack;
         }
-        private void PreFightState()
+        private void AttackIThink_PreFightState()
         {
             //Music = -1;
 
@@ -114,7 +119,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 SetNextAttack(Attacks.StartingCutscene);
             }
         }
-        private void StartingCutsceneState()
+        private void AttackIThink_StartingCutsceneState()
         {
             hide = true;
             int animTime = 120;
@@ -134,7 +139,121 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 SetNextAttack(Attacks.CrossSpirits);
             }
         }
-        private void CrossSpiritsState()
+        private void Do_UpdateFall(Vector2 teleportPosition, int charkUpTime, bool skipCharge = false, Action<Vector2> onFallEffect = null)
+        {
+            if (NPC.ai[1] == 0f) //find target
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.TargetClosest(true);
+                    NPC.ai[2] = 1f;
+                    NPC.netUpdate = true;
+                }
+            }
+            else if (NPC.ai[1] == 1f) //teleport
+            {
+                // Avoid cheap bullshit
+                NPC.damage = 0;
+
+                NPC.chaseable = false;
+                NPC.dontTakeDamage = true;
+                NPC.noGravity = true;
+                NPC.noTileCollide = true;
+
+                NPC.alpha += Main.hardMode ? 8 : 5;
+                if (NPC.alpha >= 255)
+                {
+                    NPC.alpha = 255;
+                    /*NPC.position.X = player.Center.X - (float)(NPC.width / 2);
+                    NPC.position.Y = player.Center.Y - (float)(NPC.height / 2) + player.gfxOffY - 200f;
+                    NPC.position.X = NPC.position.X - 15f;
+                    NPC.position.Y = NPC.position.Y - 100f;*/
+                    NPC.Center = teleportPosition;
+                    NPC.ai[1] = 2f + (skipCharge ? 1 : 0);
+                    NPC.netUpdate = true;
+                }
+            }
+            else if (NPC.ai[1] == 2f) //charging attack
+            {
+                if (Main.rand.NextBool())
+                {
+                    int attackDust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.RedTorch, 0f, 0f, 200, default, 1.5f);
+                    Main.dust[attackDust].noGravity = true;
+                    Main.dust[attackDust].velocity *= 0.75f;
+                    Main.dust[attackDust].fadeIn = 1.3f;
+                    Vector2 vector = new Vector2((float)Main.rand.Next(-200, 201), (float)Main.rand.Next(-200, 201));
+                    vector.Normalize();
+                    vector *= (float)Main.rand.Next(100, 200) * 0.04f;
+                    Main.dust[attackDust].velocity = vector;
+                    vector.Normalize();
+                    vector *= 34f;
+                    Main.dust[attackDust].position = NPC.Center - vector;
+                }
+
+                NPC.alpha -= Main.hardMode ? 7 : 4;
+                if (NPC.alpha <= 0)
+                {
+                    // Set damage
+                    NPC.damage = NPC.defDamage;
+
+                    NPC.chaseable = true;
+                    NPC.dontTakeDamage = false;
+                    NPC.alpha = 0;
+                    NPC.ai[1] = 3f;
+                    NPC.netUpdate = true;
+                }
+            }
+            else if (NPC.ai[1] == 3f) //Fall itself
+            {
+                // Set damage
+                NPC.damage = NPC.defDamage;
+
+                NPC.velocity.Y += 0.8f;
+                attackAnim = true;
+                if (NPC.Center.Y > (player.Center.Y - (float)(NPC.height / 2) + player.gfxOffY - 15f))
+                {
+                    NPC.noTileCollide = false;
+                    NPC.ai[1] = 4f;
+                    NPC.netUpdate = true;
+                }
+            }
+            else if (NPC.ai[1] == 4f) //landing
+            {
+                if (NPC.velocity.Y == 0f)
+                {
+                    // Avoid cheap bullshit
+                    NPC.damage = 0;
+
+                    NPC.ai[1] = 0f;
+                    NPC.netUpdate = true;
+                    NPC.noGravity = false;
+                    attack = -1;
+                    SoundEngine.PlaySound(SlamSound, NPC.Center);
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        onFallEffect.Invoke(NPC.Center);
+                        for (int stompDustArea = (int)NPC.position.X - 30; stompDustArea < (int)NPC.position.X + NPC.width + 60; stompDustArea += 30)
+                        {
+                            for (int stompDustAmount = 0; stompDustAmount < 5; stompDustAmount++)
+                            {
+                                int stompDust = Dust.NewDust(new Vector2(NPC.position.X - 30f, NPC.position.Y + (float)NPC.height), NPC.width + 30, 4, DustID.Water, 0f, 0f, 100, default, 1.5f);
+                                Main.dust[stompDust].velocity *= 0.2f;
+                            }
+                            int stompGore = Gore.NewGore(NPC.GetSource_FromAI(), new Vector2((float)(stompDustArea - 30), NPC.position.Y + (float)NPC.height - 12f), default, Main.rand.Next(61, 64), 1f);
+                            Main.gore[stompGore].velocity *= 0.4f;
+                        }
+                    }
+                }
+
+                NPC.velocity.Y += 0.8f;
+            }
+        }
+        private void Attack_SidefallTeleports()
+        {
+            int attackCount = 4;
+            int delay = 60;
+        }
+        private void Attack_CrossSpirits()
         {
             int delay = 100;
             if (AttackTimer % delay == 0)
@@ -154,14 +273,9 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 SetNextAttack(Attacks.SpiritWave);
             }
         }
-        private void SpiritWaveState()
+        private void Attack_SpiritWave()
         {
 
         }
-        private void State()
-        {
-
-        }
-
     }
 }
