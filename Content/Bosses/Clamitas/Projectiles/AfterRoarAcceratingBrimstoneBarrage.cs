@@ -1,11 +1,6 @@
 ﻿using CalamityMod;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,7 +30,7 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
         }
         public override void AI()
         {
-            if (Projectile.ai[1] == 0) 
+            if (Projectile.ai[1] == 0)
             {
                 if (Projectile.velocity.Length() > 0.1f)
                     Projectile.velocity *= 0.8f;
@@ -50,7 +45,9 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
             }
             else
             {
-
+                Projectile.velocity *= 1.01f;
+                if (Projectile.velocity.Length() >= 10)
+                    Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero) * 10f;
             }
         }
     }

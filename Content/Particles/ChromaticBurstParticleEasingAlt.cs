@@ -1,11 +1,6 @@
-﻿using Luminance.Common.Easings;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-
-namespace Clamity.Content.Particles
+﻿namespace Clamity.Content.Particles
 {
-    public class ChromaticBurstParticleEasingAlt : BaseClamityParticle
+    /*public class ChromaticBurstParticleEasingAlt : BaseClamityParticle
     {
         public float StartingScale = 1f;
         public float FinalScale = 1f;
@@ -43,5 +38,5 @@ namespace Clamity.Content.Particles
         {
             spriteBatch.Draw(TextureFile, Position - Main.screenPosition, null, Color * Opacity, Rotation, TextureFile.Size() * 0.5f, Scale * 0.3f, 0, 0f);
         }
-    }
+    }*/
 }

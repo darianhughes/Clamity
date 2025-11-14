@@ -38,11 +38,15 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
         }
         public override void OnSpawn(IEntitySource source)
         {
-            WeightedRandom<int> typeDecider = new WeightedRandom<int>((int)Main.GlobalTimeWrappedHourly + Projectile.whoAmI);
-            typeDecider.Add(ModContent.ProjectileType<RedirectingLostSoul>(), 0.75f);
-            typeDecider.Add(ModContent.ProjectileType<RedirectingVengefulSoul>(), 0.4f);
-            typeDecider.Add(ModContent.ProjectileType<RedirectingGildedSoul>(), 0.2f);
-            SpriteType = typeDecider.Get();
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                WeightedRandom<int> typeDecider = new WeightedRandom<int>((int)Main.GlobalTimeWrappedHourly + Projectile.whoAmI);
+                typeDecider.Add(ModContent.ProjectileType<RedirectingLostSoul>(), 0.75f);
+                typeDecider.Add(ModContent.ProjectileType<RedirectingVengefulSoul>(), 0.4f);
+                typeDecider.Add(ModContent.ProjectileType<RedirectingGildedSoul>(), 0.2f);
+                SpriteType = typeDecider.Get();
+                Projectile.netUpdate = true;
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

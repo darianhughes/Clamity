@@ -4,9 +4,7 @@ using CalamityMod.NPCs;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Particles;
 using Clamity.Commons;
-using Clamity.Content.Bosses.Clamitas.Particles;
 using Clamity.Content.Bosses.Clamitas.Projectiles;
-using Clamity.Content.Bosses.WoB.Projectiles;
 using Clamity.Content.Particles;
 using Luminance.Common.Easings;
 using Microsoft.Xna.Framework;
@@ -24,7 +22,6 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         StartingCutscene = 1,
 
         SidefallTeleports,
-        FastTeleports,
         CrossSpirits,
         SpiritWave,
 
@@ -103,7 +100,13 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         {
             CurrentAttack = nextAttack;
             AttackTimer = 0;
-
+            NPC.ai[1] = 0;
+            NPC.ai[2] = 0;
+            NPC.Calamity().newAI[0] = 0;
+            NPC.Calamity().newAI[1] = 0;
+            NPC.Calamity().newAI[2] = 0;
+            NPC.Calamity().newAI[3] = 0;
+            NPC.netUpdate = true;
             return nextAttack;
         }
         private void AttackIThink_PreFight()
@@ -130,8 +133,8 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
             if (AttackTimer % 10 == 0)
             {
-                //ChromaticBurstParticleEasing particle1 = new ChromaticBurstParticleEasing(NPC.Center, Vector2.Zero, Color.Red, (Color.Red * 0.4f) with { A = 255 }, 20, 2f, 0.00f, EasingCurves.Quadratic, EasingType.Out);
-                ChromaticBurstParticleEasingAlt particle1 = new ChromaticBurstParticleEasingAlt(NPC.Center, Vector2.Zero, Color.Red, 20, 2f, 0.00f, EasingCurves.Quadratic, EasingType.Out);
+                ChromaticBurstParticleEasing particle1 = new ChromaticBurstParticleEasing(NPC.Center, Vector2.Zero, Color.Red, (Color.Red * 0.4f) with { A = 255 }, 20, 2f, 0.00f, EasingCurves.Quadratic, EasingType.Out);
+                //ChromaticBurstParticleEasingAlt particle1 = new ChromaticBurstParticleEasingAlt(NPC.Center, Vector2.Zero, Color.Red, 20, 2f, 0.00f, EasingCurves.Quadratic, EasingType.Out);
                 //ChromaticBurstParticle particle1 = new ChromaticBurstParticle(NPC.Center, Vector2.Zero, Color.Red, 20, 1.5f, 0.05f);
                 GeneralParticleHandler.SpawnParticle(particle1);
             }
@@ -143,7 +146,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 SetNextAttack(ClamitasAttacks.CrossSpirits);
             }
         }
-        private void Do_UpdateFall(float xOffsetTeleport, ref float aiSubstate, ref float fallCounter, bool isFisrtFall = false,  Action<Vector2> onFallEffect = null)
+        private void Do_UpdateFall(float xOffsetTeleport, ref float aiSubstate, ref float fallCounter, bool isFisrtFall = false, Action<Vector2> onFallEffect = null)
         {
             //ref float slamCount = ref NPC.Infernum().ExtraAI[4];
             NPC.velocity.X = 0f;
@@ -194,7 +197,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                     if (NPC.velocity.Y == 0f)
                     {
                         SoundEngine.PlaySound(GiantClam.SlamSound, NPC.Bottom);
-                        
+
                         AttackTimer = 0;
                         aiSubstate = 1f;
                         fallCounter++;
@@ -211,19 +214,20 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         }
         private void Attack_SidefallTeleports()
         {
-            int attackCount = 4;
+            int maxFallCount = 4;
             //int delay = 60;
-            Action<Vector2> createRing = (Vector2 center) => 
+            Action<Vector2> createRing = (Vector2 center) =>
             {
                 int ringCount = 10;
                 for (int i = 0; i < ringCount; i++)
                 {
                     int type = ModContent.ProjectileType<AfterRoarAcceratingBrimstoneBarrage>();
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / i * ringCount), type, NPC.GetProjectileDamageClamity(type), 0);
+                    AttackTimer = 1;
                 }
             };
 
-            if (NPC.ai[2] > 4)
+            if (NPC.ai[2] < maxFallCount)
             {
                 Do_UpdateFall(Main.rand.Next(500, 600), ref NPC.ai[1], ref NPC.ai[2], onFallEffect: createRing);
             }
@@ -231,6 +235,11 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             {
                 NPC.Calamity().newAI[0] = 1;
                 //roar to speed up a rings of projectiles
+            }
+
+            if (AttackTimer == 180)
+            {
+                SetNextAttack(ClamitasAttacks.CrossSpirits);
             }
         }
         private void Attack_CrossSpirits()
@@ -252,7 +261,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             {
                 SetNextAttack(ClamitasAttacks.SpiritWave);
             }
-        
+
         }
         private void Attack_SpiritWave()
         {
