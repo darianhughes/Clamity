@@ -79,7 +79,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             switch (CurrentAttack)
             {
                 case Attacks.PreFight:
-                    AttackIThink_PreFightState();
+                    AttackThing_PreFight();
                     break;
                 case Attacks.StartingCutscene:
                     AttackIThink_StartingCutsceneState();
@@ -103,7 +103,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
             return nextAttack;
         }
-        private void AttackIThink_PreFightState()
+        private void AttackThing_PreFight()
         {
             //Music = -1;
 
@@ -273,6 +273,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             {
                 SetNextAttack(Attacks.SpiritWave);
             }
+        
         }
         private void Attack_SpiritWave()
         {
