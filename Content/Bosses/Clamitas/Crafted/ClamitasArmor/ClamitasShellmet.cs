@@ -6,6 +6,7 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Projectiles.Typeless;
 using Clamity.Content.Bosses.Clamitas.Crafted.Weapons;
 using Clamity.Content.Bosses.Clamitas.Drop;
+using Clamity;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -48,20 +49,31 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
 
             player.Calamity().wearingRogueArmor = true;
 
-
-            player.maxMinions += 8;
             if (player.whoAmI == Main.myPlayer)
             {
-                IEntitySource source_ItemUse = player.GetSource_ItemUse(Item);
-                if (player.FindBuffIndex(ModContent.BuffType<HellstoneShellfishStaffBuff>()) == -1)
+                var clam = player.GetModPlayer<ClamityPlayer>();
+                clam.shellfishSetBonus = true;
+
+                // make sure only 1 set-bonus minion exists
+                if (clam.shellfishSetBonusProj == -1 ||
+                    !Main.projectile[clam.shellfishSetBonusProj].active)
                 {
-                    player.AddBuff(ModContent.BuffType<HellstoneShellfishStaffBuff>(), 3600);
+                    int proj = Projectile.NewProjectile(
+                        player.GetSource_FromThis(),
+                        player.Center,
+                        Vector2.Zero,
+                        ModContent.ProjectileType<HellstoneShellfishStaffMinion>(),
+                        130,
+                        2f,
+                        player.whoAmI
+                    );
+
+                    // MARK it as set-bonus
+                    Main.projectile[proj].originalDamage = -1;
+                    clam.shellfishSetBonusProj = proj;
                 }
 
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<HellstoneShellfishStaffMinion>()] < 2)
-                {
-                    Projectile.NewProjectileDirect(source_ItemUse, player.Center, -Vector2.UnitY, ModContent.ProjectileType<HellstoneShellfishStaffMinion>(), 130, 0f, player.whoAmI).originalDamage = 130;
-                }
+                player.maxMinions += 4;
             }
         }
         public override void AddRecipes()
