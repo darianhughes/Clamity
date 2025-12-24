@@ -16,7 +16,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
 
         public override void SetDefaults()
         {
-            Item.damage = 2500;
+            Item.damage = 1900;
             Item.DamageType = DamageClass.Melee;
             Item.useTurn = true;
             Item.rare = ModContent.RarityType<Violet>();

@@ -98,7 +98,7 @@ Wings: {
 			Acceleration multiplier: 2.8
 			Excellent vertical speed
 			Flight time: 280
-			Restores flight time when taking a hit
+			Restores flight time when taking damage
 			Amount of restored flight time is equal to the damage taken to max life ratio divided by 2
 			Defense of all players on your team is increased by 20 while wearing Frozen Armor
 			'''

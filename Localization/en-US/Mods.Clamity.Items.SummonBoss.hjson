@@ -32,10 +32,9 @@ AncientConsole: {
 	DisplayName: Ancient Console
 	Tooltip:
 		'''
-		Summon a Wall of Bronze on right click on tile
-		Work in Underworld
-		Wall of Bronze despawn when you left from Underworld
-		WARNING: If you in multiplayer, use summoning item instead of this tile (he crafted from tile version NOW)
+		Right click to summon a Wall of Bronze when placed in the underworld
+		Wall of Bronze despawns when if you leave the Underworld
+		WARNING: If in multiplayer, use the debug summoning item instead of this tile (crafted using this console)
 		'''
 }
 

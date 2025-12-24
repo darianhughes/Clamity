@@ -5,7 +5,7 @@ DepthsEchoRifle: {
 
 Obsidigun: {
 	DisplayName: Obsidigun
-	Tooltip: Converts musket balls into fast-moving obsidian bullets that break into a lot of shards on hit
+	Tooltip: Converts musket balls into fast-moving obsidian bullets that break into many shards on hit
 }
 
 RoseBow: {
@@ -23,7 +23,7 @@ WitheredBoneBow: {
 		'''
 		Converts wooden arrow to withered bone bolts
 		Bolts creates a copy behind player on hit up to two times
-		Bolts inflict Withered and has 15 armor penetration
+		Bolts inflict Withered and have 15 armor penetration
 		'Did I hear someone say taco?'
 		'''
 }
