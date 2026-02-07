@@ -4,8 +4,7 @@ using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Dusts;
 using CalamityMod.Events;
 using CalamityMod.Items.Placeables;
-using CalamityMod.Items.Placeables.Crags;
-using CalamityMod.Items.Placeables.Furniture.Paintings;
+using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
@@ -369,7 +368,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                             AttackCounter++;
                             for (int i = 0; i < 18; i++)
                             {
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.One.RotatedBy(MathHelper.TwoPi / 18f * i) * 2f, ModContent.ProjectileType<BrimstoneBarrage>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstoneBarrage>()), 0f);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.One.RotatedBy(MathHelper.TwoPi / 18f * i) * 2f, ModContent.ProjectileType<BrimstoneBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<BrimstoneBarrage>()), 0f);
                             }
                         }
                         /*if (FallAttackType == 0 || (FallAttackType == 1 && AttackCounter >= 4))
@@ -410,8 +409,8 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 //Projectile.NewProjectile(base.NPC.GetSource_FromAI(), NPC.Center, num9 * 10f, type3, damage3, 0f, Main.myPlayer);
                 for (int k = 0; k < 12; k++)
                 {
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 12f * k) * 8f, type3, NPC.GetProjectileDamageClamity(type3), 0f, Main.myPlayer);
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 12f * k + MathHelper.PiOver4 / 4) * 4f, type3, NPC.GetProjectileDamageClamity(type3), 0f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 12f * k) * 8f, type3, NPC.GetProjectileDamage(type3), 0f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 12f * k + MathHelper.PiOver4 / 4) * 4f, type3, NPC.GetProjectileDamage(type3), 0f, Main.myPlayer);
                 }
 
                 attack = -1;
@@ -424,8 +423,8 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                     SoundEngine.PlaySound(in SoundID.Item68, NPC.position);
                     for (int l = -7; l < 7; l++)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + l * 175 * 1.4f, player.Center.Y - 950f, 0f, 4f, ModContent.ProjectileType<BrimstonePearlBurst>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstonePearlBurst>()), 0f, Main.myPlayer);
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + l * 175 * 1.25f, player.Center.Y - 1250f, 0f, 2.5f, ModContent.ProjectileType<BrimstonePearlBurst>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstonePearlBurst>()), 0f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + l * 175 * 1.4f, player.Center.Y - 950f, 0f, 4f, ModContent.ProjectileType<BrimstonePearlBurst>(), NPC.GetProjectileDamage(ModContent.ProjectileType<BrimstonePearlBurst>()), 0f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + l * 175 * 1.25f, player.Center.Y - 1250f, 0f, 2.5f, ModContent.ProjectileType<BrimstonePearlBurst>(), NPC.GetProjectileDamage(ModContent.ProjectileType<BrimstonePearlBurst>()), 0f, Main.myPlayer);
                     }
                 }
 
@@ -442,7 +441,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                     AttackCounter++;
                     Vector2 num9 = (Main.player[NPC.target].Center - NPC.Center).SafeNormalize(Vector2.UnitX);
                     int type3 = ModContent.ProjectileType<BrimstoneHellblast>();
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9 * 8f, type3, NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstoneHellblast>()), 0f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9 * 8f, type3, NPC.GetProjectileDamage(ModContent.ProjectileType<BrimstoneHellblast>()), 0f, Main.myPlayer);
                 }
 
                 if (AttackCounter >= 15)
@@ -463,7 +462,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                     Vector2 num9 = (Main.player[NPC.target].Center - NPC.Center).SafeNormalize(Vector2.UnitX);
                     int type3 = ModContent.ProjectileType<BrimstoneHellblast>();
                     for (int i = 0; i < 5; i++)
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9 * 8f + Main.rand.NextVector2CircularEdge(1f, 1f), type3, NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstoneHellblast>()), 0f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9 * 8f + Main.rand.NextVector2CircularEdge(1f, 1f), type3, NPC.GetProjectileDamage(ModContent.ProjectileType<BrimstoneHellblast>()), 0f, Main.myPlayer);
                 }
 
                 if (AttackCounter >= 10)
