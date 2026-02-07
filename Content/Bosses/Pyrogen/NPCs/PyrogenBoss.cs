@@ -390,7 +390,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                     {
                         int num21 = 3;
                         float num22 = MathF.PI * 2f / num21;
-                        int projectileDamage = NPC.GetProjectileDamageClamity(fireblast);
+                        int projectileDamage = NPC.GetProjectileDamage(fireblast);
                         float num24 = 2f + NPC.ai[0];
                         double num25 = (double)num22 * 0.5;
                         double a = (double)MathHelper.ToRadians(90f) - num25;
@@ -452,7 +452,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                                 {
                                     //0.075f
                                     Vector2 vector2 = (Main.player[NPC.target].Center - NPC.Center) * 0.09f + Main.rand.NextVector2Circular(100, 100);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vector2, fireBomb, NPC.GetProjectileDamageClamity(fireBomb), 0f, Main.myPlayer);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vector2, fireBomb, NPC.GetProjectileDamage(fireBomb), 0f, Main.myPlayer);
                                 }
                                 /*for (int l = 0; l < num27; l++)
                                 {
@@ -520,7 +520,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                                     {
                                         Vector2 vector4 = spinningpoint3.RotatedBy(num36 * m);
                                         //vector4 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 5f;
-                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector4) * 30f, vector4, fireBarrageHoming, NPC.GetProjectileDamageClamity(fireBarrageHoming), 0f, Main.myPlayer);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector4) * 30f, vector4, fireBarrageHoming, NPC.GetProjectileDamage(fireBarrageHoming), 0f, Main.myPlayer);
                                     }
                                 }
                             }
@@ -611,7 +611,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                                 for (int num51 = 0; num51 < num46; num51++)
                                 {
                                     Vector2 vector5 = spinningpoint4.RotatedBy(num47 * num51);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector5) * 30f, vector5, fireBarrage, NPC.GetProjectileDamageClamity(fireBarrage), 0f, Main.myPlayer, 0f, num44);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector5) * 30f, vector5, fireBarrage, NPC.GetProjectileDamage(fireBarrage), 0f, Main.myPlayer, 0f, num44);
                                 }
                             }
                         }
@@ -704,7 +704,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                                     for (int num57 = 0; num57 < num53; num57++)
                                     {
                                         Vector2 vector6 = spinningpoint5.RotatedBy(num54 * num57);
-                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector6) * 30f, vector6, fireBarrage, NPC.GetProjectileDamageClamity(fireBarrage), 0f, Main.myPlayer);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector6) * 30f, vector6, fireBarrage, NPC.GetProjectileDamage(fireBarrage), 0f, Main.myPlayer);
                                     }
                                 }
                             }
@@ -753,7 +753,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                                 for (int num74 = 0; num74 < num68; num74++)
                                 {
                                     Vector2 vector8 = spinningpoint6.RotatedBy(num70 * num74);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector8) * 30f, vector8, fireBarrage, NPC.GetProjectileDamageClamity(fireBarrage), 0f, Main.myPlayer, 0f, num65);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector8) * 30f, vector8, fireBarrage, NPC.GetProjectileDamage(fireBarrage), 0f, Main.myPlayer, 0f, num65);
                                 }
                             }
                         }
@@ -849,7 +849,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                             for (int num80 = 0; num80 < num76; num80++)
                             {
                                 Vector2 vector9 = spinningpoint7.RotatedBy(num77 * num80);
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector9) * 30f, vector9, fireBarrage, NPC.GetProjectileDamageClamity(fireBarrage), 0f, Main.myPlayer);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector9) * 30f, vector9, fireBarrage, NPC.GetProjectileDamage(fireBarrage), 0f, Main.myPlayer);
                             }
                         }
                     }
@@ -930,7 +930,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                             //SoundEngine.PlaySound(in style, NPC.Center);
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                int projectileDamage8 = NPC.GetProjectileDamageClamity(fireBarrageHoming);
+                                int projectileDamage8 = NPC.GetProjectileDamage(fireBarrageHoming);
                                 float num93 = 9f + num2;
                                 for (int num94 = 0; num94 < 3; num94++)
                                 {
@@ -1039,7 +1039,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                                     for (int num110 = 0; num110 < num105; num110++)
                                     {
                                         Vector2 vector12 = spinningpoint9.RotatedBy(num106 * num110);
-                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector12) * 30f, vector12, fireBarrage, NPC.GetProjectileDamageClamity(fireBarrage), 0f, Main.myPlayer, ai, 1f);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector12) * 30f, vector12, fireBarrage, NPC.GetProjectileDamage(fireBarrage), 0f, Main.myPlayer, ai, 1f);
                                     }
                                 }
                             }
@@ -1115,7 +1115,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 NPC.velocity.X = (NPC.velocity.X * num118 + num112) / (num118 + 1f);
                 NPC.velocity.Y = (NPC.velocity.Y * num118 + num113) / (num118 + 1f);
                 if (globalTimer % 10 == 0)
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity * 0.5f, ModContent.ProjectileType<FireBomb>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<FireBomb>()), 0);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity * 0.5f, ModContent.ProjectileType<FireBomb>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBomb>()), 0);
 
                 if (num114 < num116 + 200f)
                 {
@@ -1151,7 +1151,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 for (int num124 = 0; num124 < num119; num124++)
                 {
                     Vector2 vector14 = spinningpoint10.RotatedBy(num120 * num124);
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector14) * 30f, vector14, fireblast, NPC.GetProjectileDamageClamity(fireblast), 0f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector14) * 30f, vector14, fireblast, NPC.GetProjectileDamage(fireblast), 0f, Main.myPlayer);
                 }
             }
 
@@ -1540,7 +1540,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 {
                     if (randomAttack < 25)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<Fireblast>()), 1f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamage(ModContent.ProjectileType<Fireblast>()), 1f, Main.myPlayer);
                         randomAttack = -1;
                     }
                     else if (randomAttack >= 25 && randomAttack < 100)
@@ -1549,7 +1549,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                         {
                             for (int i = 0; i < 4; i++)
                             {
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
                             }
                         }
                         if (attackTimer < -200)
