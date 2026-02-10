@@ -5,6 +5,15 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClamityMusic\ClamityMusic.csproj" />
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <!-- Проверяем наличие изменений -->
+    <Message Text="Проверка наличия изменений..." />
+    <Exec Command="git diff-index HEAD --quiet --exit-code"/>
+    <Error Condition="'$(LastExitCode)' != '0'" Text="Изменения обнаружены, запускаем сборку."/>
+  </Target>
+  <ItemGroup>
 	  <Reference Include="CalamityMod">
 	    <HintPath>..\ModAssemblies\CalamityMod_v2.1.dll</HintPath>
 	  </Reference>

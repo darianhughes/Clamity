@@ -3,8 +3,6 @@ using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Cooldowns;
 using CalamityMod.Items.Accessories;
 using CalamityMod.NPCs.Cryogen;
-using CalamityMod.Projectiles.Rogue;
-using CalamityMod.Projectiles.Typeless;
 using CalamityMod.Systems.Collections;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
@@ -475,7 +473,7 @@ namespace Clamity
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
 
-            if (eidolonAmulet&& Player.Calamity().scionsCurio)
+            if (eidolonAmulet && Player.Calamity().scionsCurio)
             {
                 /*
                 int d = (int)Player.GetTotalDamage<AverageDamageClass>().ApplyTo(damage / 5);

@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Classless
+namespace Clamity.Content.Items.Weapons.Typeless
 {
     public class GoldenGun : ModItem, ILocalizedModType
     {

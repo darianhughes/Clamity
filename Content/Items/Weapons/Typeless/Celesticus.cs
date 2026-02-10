@@ -4,11 +4,11 @@ using CalamityMod.Items.Weapons.Typeless;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Classless
+namespace Clamity.Content.Items.Weapons.Typeless
 {
     public class Celesticus : Aestheticus, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.Weapons.Classless";
+        public new string LocalizationCategory => "Items.Weapons.Typeless";
         public override void SetDefaults()
         {
             base.SetDefaults();

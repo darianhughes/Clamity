@@ -19,20 +19,36 @@ TrashOfMagnus: {
 }
 
 EyeOfNova: {
+	DisplayName: Глаз Новы
 	Tooltip:
 		'''
 		Стреляет сильным самонаводящимся экзо лучом, который уменьшает защиту противника и замедляет его
 		Востанавливает ману и жизни при ударе
 		Это оружие масштабируется с учетом всех ваших характеристик урона сразу
 		'''
-	DisplayName: Глаз Новы
 }
 
 Celesticus: {
+	DisplayName: Селектикус
 	Tooltip:
 		'''
 		Выпускает кристаллы, которые взрываются и замедляют врагов
 		Это оружие масштабируется с учетом всех ваших характеристик урона сразу
 		'''
-	DisplayName: Селектикус
+}
+
+GoldenGun: {
+	DisplayName: Golden Gun
+	Tooltip: ""
+}
+
+WitherOnAStick: {
+	DisplayName: Wither On A Stick
+	Tooltip:
+		'''
+		Congratulation! Developers kill a my belowed Alicorn on a Stick
+		Now he looks sucks for me (Coldheart Icicle)
+		And i made new stick
+		- WitherTaco, Very Clamitous owner
+		'''
 }

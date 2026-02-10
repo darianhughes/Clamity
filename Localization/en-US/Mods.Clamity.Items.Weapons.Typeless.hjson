@@ -19,20 +19,36 @@ TrashOfMagnus: {
 }
 
 EyeOfNova: {
+	DisplayName: Eye of Nova
 	Tooltip:
 		'''
 		Fires powerful homing exo beams that reduce enemy protection, defence and slow them down
 		Heals mana and health on hit
 		This weapon scales with all your damage stats at once
 		'''
-	DisplayName: Eye of Nova
 }
 
 Celesticus: {
+	DisplayName: Celesticus
 	Tooltip:
 		'''
 		Fires crystals that explode and slow enemies down
 		This weapon scales with all your damage stats at once
 		'''
-	DisplayName: Celesticus
+}
+
+GoldenGun: {
+	DisplayName: Golden Gun
+	Tooltip: ""
+}
+
+WitherOnAStick: {
+	DisplayName: Wither On A Stick
+	Tooltip:
+		'''
+		Congratulation! Developers kill a my belowed Alicorn on a Stick
+		Now he looks sucks for me (Coldheart Icicle)
+		And i made new stick
+		- WitherTaco, Very Clamitous owner
+		'''
 }

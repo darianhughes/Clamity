@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
+﻿using CalamityMod;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.Abyss;
 using CalamityMod.NPCs.AquaticScourge;
@@ -22,8 +20,9 @@ using Clamity.Content.Items.Accessories.GemCrawlerDrop;
 using Clamity.Content.Items.Accessories.Sentry;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
-using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Clamity.Content.Items.Weapons.Typeless;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;

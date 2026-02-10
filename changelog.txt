@@ -1,27 +1,19 @@
-Update 1.0.3.14 - Brainstorm Patch
+Update 1.0.3.15 -  Patch
 
 New Content:
 None
 
 Reworks:
-Reworked the Clamitas armor slighty.
-Rewroked the Hellstone Shellfish Staff
-Reworked the Starfish From the Depth slighty.
+
 
 Removes:
-Temporarily removed the Exo Ball
+
 
 Balance Changes:
-Nerfed the damage increase on Skull of the Blood God from 20% to 15%.
-Nerfed the damage of the Everest from 1300 to 750.
-Nerfed the damage of the Frozen Volcano from 2500 to 1900 and made it no longer true melee.
-Nerfed the damage of the Starfish From the Depth from 200 to 150.
+Nerfed fishing power from Tresure of Clamity from 50 to 25
 
 Other Changes:
-Pyrogen now disables rain while alive.
+Renamed Pearl of Fish Calamity to Treasure of Clamity
 
 Bug Fixes:
-Fixed a bug that caused the Soul of Pyrogen to not increase rogue damage properly.
-Fixed a bug that caused the Wulfrum Lure to fire more bobbers than intended when right clicking.
-Fixed a bug that caused Clamitas not to despawn properly.
-Fixed loading with Calamity.
+More fixes of tooltip missmatch of new accessory's components effects

@@ -9,7 +9,8 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Clamitas.Crafted
 {
-    public class PearlOfFishCalamity : ModItem, ILocalizedModType, IModType
+    [LegacyName("PearlOfFishCalamity")]
+    public class TreasureOfClamity : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Accessories";
         public override void SetDefaults()
@@ -22,10 +23,10 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.fishingSkill += 50;
+            player.fishingSkill += 25;
             player.Calamity().enchantedPearl = true;
             player.Calamity().alluringBait = true;
-            ModContent.GetInstance<PearlofEnthrallment>().UpdateAccessory(player, hideVisual);
+            if (!hideVisual) ModContent.GetInstance<PearlofEnthrallment>().UpdateAccessory(player, hideVisual);
             player.Calamity().sirenPet = false;
         }
         public override void UpdateVanity(Player player)
