@@ -51,7 +51,7 @@ namespace Clamity.Content.Items.Mounts
             player.mount.SetMount(ModContent.MountType<BrimChairMount>(), player);
             player.buffTime[buffIndex] = 10;
             player.Clamity().FlyingChair = true;
-            player.Clamity().FlyingChairPower = 13;
+            //player.Clamity().FlyingChairPower = 13;
         }
     }
 }

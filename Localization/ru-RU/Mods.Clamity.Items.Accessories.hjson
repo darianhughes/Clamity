@@ -176,7 +176,11 @@ CyanPearl: {
 		+7% summon damage
 		Halves the summon damage penalty for sentries
 		''' */
-	// HoldShiftTooltip: "  When holding non-summon  weapon sentries will deal 0.875x damage instead of 0.75x"
+	/* HoldShiftTooltip:
+		'''
+		  When holding non-summon/non-average weapon sentries will deal 0.875x damage instead of 0.75x
+		  Also not applies penalty if holding classless weapons or active Old One's Army
+		''' */
 }
 
 SkullOfTheBloodGod: {
