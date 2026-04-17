@@ -21,9 +21,12 @@ namespace Clamity.Content.Items.Mounts
                 .AddIngredient<ExoThrone>()
                 .AddIngredient<PlagueCellCanister>()
                 .Register();
+
+            /* this ins't needed. you can just shimmer decraft.
             Recipe.Create(ModContent.ItemType<ExoThrone>())
                 .AddIngredient(Type)
                 .Register();
+            */
         }
     }
     public class PlagueChairMount : DraedonGamerChairMount
@@ -57,7 +60,7 @@ namespace Clamity.Content.Items.Mounts
             player.mount.SetMount(ModContent.MountType<PlagueChairMount>(), player);
             player.buffTime[buffIndex] = 10;
             player.Clamity().FlyingChair = true;
-            player.Clamity().FlyingChairPower = 5;
+            //player.Clamity().FlyingChairPower = 5;
         }
     }
 }
