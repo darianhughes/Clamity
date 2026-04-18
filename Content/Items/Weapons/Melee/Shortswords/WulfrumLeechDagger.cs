@@ -24,7 +24,6 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.autoReuse = true;
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.consumable = true;
 
             Item.damage = 30;
             Item.DamageType = DamageClass.Melee;
@@ -58,12 +57,15 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Projectile.timeLeft = 360;
             Projectile.hide = true;
             Projectile.ownerHitCheck = true;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.TryGetOwner(out Player player);
+            Projectile.localNPCHitCooldown = player.HeldItem.useAnimation - 1;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
-            Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Projectile.velocity / 2f, ModContent.ProjectileType<WulfrumLeechDaggerShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-            Projectile.active = false;
+            Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Projectile.velocity * 2f, ModContent.ProjectileType<WulfrumLeechDaggerShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+            //Projectile.active = false;
         }
     }
     public class WulfrumLeechDaggerShard : ModProjectile, ILocalizedModType, IModType

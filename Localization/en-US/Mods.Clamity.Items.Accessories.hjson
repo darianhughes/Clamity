@@ -116,10 +116,14 @@ TreasureOfClamity: {
 	Tooltip:
 		'''
 		Increases fishing skill by 25
+		Increases the yield of potion ingredient fish
 		Increases chance to catch crates and loot-containing fish by 15%
-		Crate catches are 25% more likely to be higher quality, accompanied by visual pearls
-		Potion ingredient fish yield is increased
-		Summons a water elemental to protect you when visibility is toggled on
+		Crate catches are 25% more likely to be higher quality, accompanied by visual pearls[TOGGLE]
+		'''
+	ToggleEffect:
+		'''
+
+		Summons a water elemental to protect
 		'''
 }
 
@@ -194,12 +198,13 @@ SkullOfTheBloodGod: {
 		'''
 		15% increased damage and 13% increased critical strike chance
 		Critical strikes explode, causing nearby enemies to ignite with [cbuff:CalamityMod/BrimstoneFlames]
-		Halves enemy contact damage with a 20 second cooldown
-		[TOGGLE]Reduces damage taken from [cbuff:CalamityMod/BrimstoneFlames] by 50%
+		Halves enemy contact damage with a 20 second cooldown[TOGGLE]
+		Reduces damage taken from [cbuff:CalamityMod/BrimstoneFlames] by 50%
 		[c/aaaaaa:Shift-<right> this item in your inventory to toggle] [i:CalamityMod/VoidofCalamity] [c/aaaaaa:Void of Calamity's rain effect]
 		'''
 	ToggleEffect:
 		'''
+
 		Brimstone fire rains down after getting hit
 		'''
 }

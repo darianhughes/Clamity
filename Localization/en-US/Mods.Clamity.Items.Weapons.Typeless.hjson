@@ -13,8 +13,8 @@ TrashOfMagnus: {
 		'''
 		Fires plague bolts that inflict Plague
 		This weapon scales with the average of all your damage stats
-		[c/1FFBFF:'An attempt of Magnus' to expand into biological terrorism.]
-		[c/1FFBFF:Despite his efforts, it was deemed a failure and discarded.']
+		[c/9ABA4A:'An attempt of Magnus' to expand into biological terrorism.]
+		[c/9ABA4A:Despite his efforts, it was deemed a failure and discarded.']
 		'''
 }
 
@@ -39,7 +39,7 @@ Celesticus: {
 
 GoldenGun: {
 	DisplayName: Golden Gun
-	Tooltip: ""
+	Tooltip: Shoots a straight line of pure ichor
 }
 
 WitherOnAStick: {
@@ -47,7 +47,7 @@ WitherOnAStick: {
 	Tooltip:
 		'''
 		Congratulation! Developers kill a my belowed Alicorn on a Stick
-		Now he looks sucks for me (Coldheart Icicle)
+		Now he looks sucks for me (I talking about Coldheart Icicle)
 		And i made new stick
 		- WitherTaco, Very Clamitous owner
 		'''
